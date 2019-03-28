@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+ chubs-api:
+  build: ./api
+  volumes:
+   - ./api:/usr/src/app
+  ports:
+   - 5001:8080
+ web:
+  image: php:apache
+  volumes:
+   - ./web:/var/www/html
+  ports:
+   - 5000:80
+  depends_on:
+   - chubs-api
